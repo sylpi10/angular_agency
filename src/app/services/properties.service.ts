@@ -10,15 +10,24 @@ export class PropertiesService {
     {
       title: 'Amazing house',
       category: 'House',
+      surface: '120',
+      nbRooms: '4',
+      price: '240',
       sold: true
     },
     {
       title: 'Amazing appartment',
       category: 'Appartment',
+      surface: '240',
+      nbRooms: '7',
+      price: '360',
       sold: false
     },{
       title: 'Amazing Ranch',
       category: 'Ranch',
+      surface: '80',
+      nbRooms: '2',
+      price: '4600',
       sold: true
     }
   ];
@@ -29,6 +38,10 @@ export class PropertiesService {
 
   emitProperties(){
     this.propertiesSubject.next(this.properties)
+  }
+
+  createProperties(property){
+    this.properties.push(property)
   }
 
   getProperties(){
