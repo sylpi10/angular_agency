@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {PropertiesService} from "../../services/properties.service";
 import {Subscription} from "rxjs";
 import * as $ from 'jquery';
+import {Property} from "../../interface/property";
 
 @Component({
   selector: 'app-admin-properties',
@@ -12,7 +13,7 @@ import * as $ from 'jquery';
 export class AdminPropertiesComponent implements OnInit {
   propertiesForm: FormGroup;
   propertiesSubscription: Subscription;
-  properties: any[] = [];
+  properties: Property[] = [];
   indexToRemove;
   indexToUpdate;
   editMode:boolean = false;
@@ -25,7 +26,7 @@ export class AdminPropertiesComponent implements OnInit {
   ngOnInit(): void {
     this.initPropertiesForm();
     this.propertiesService.propertiesSubject.subscribe(
-      (data) => {
+      (data:Property[]) => {
         this.properties = data;
       }
     );
@@ -45,7 +46,7 @@ export class AdminPropertiesComponent implements OnInit {
   }
 
   onSubmitPropertiesForm(){
-      const newProperty = this.propertiesForm.value;
+      const newProperty: Property = this.propertiesForm.value;
       //
       if (this.editMode){
         this.propertiesService.updateProperty(newProperty, this.indexToUpdate)
@@ -71,7 +72,7 @@ export class AdminPropertiesComponent implements OnInit {
     $('#confirmDelete').modal('hide');
   }
 
-  onEditProperty(property){
+  onEditProperty(property: Property){
     this.editMode = true;
     $('#properties-form').modal('show');
     this.propertiesForm.get('title').setValue(property.title)
