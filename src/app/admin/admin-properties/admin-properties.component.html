@@ -13,7 +13,9 @@
     <div class="modal fade" id="properties-form" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form action="">
+
+          <!--  form-->
+          <form #propertiesForm="ngForm" (ngSubmit)="onSubmitPropertiesForm(propertiesForm)">
 
             <div class="modal-header">
               <h5 class="modal-title">Edit A Property</h5>
@@ -23,13 +25,14 @@
             </div>
             <div class="modal-body">
 
-              <div class="form-group"><input type="text" placeholder="Title" class="form-control"></div>
+              <div class="form-group">
+                <input type="text" placeholder="Title" name="title" class="form-control" ngModel required="required"></div>
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Category</label>
+                  <label class="input-group-text" for="inputGroupSelect01" required="required">Category</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select class="custom-select" id="inputGroupSelect01" name="category" required="required" ngModel>
                   <option value="ranch">Ranch</option>
                   <option value="house">House</option>
                   <option value="appartment">Appartment</option>
@@ -38,22 +41,22 @@
 
               <div class="form-row">
                 <div class="form-group col-6">
-                  <input type="text" placeholder="Surface (m2)" class="form-control">
+                  <input type="text" placeholder="Surface (m2)" class="form-control" name="surface" ngModel required="required">
                 </div>
                 <div class="form-group col-6">
-                  <input type="text" placeholder="Nb Rooms" class="form-control">
+                  <input type="text" placeholder="Nb Rooms" class="form-control" name="nbRooms" ngModel required="required">
                 </div>
               </div>
 
               <div class="form-group">
-                <textarea class="form-control w-100" rows="4" name="" placeholder="Description" id="" cols="30" rows="10"></textarea>
+                <textarea class="form-control w-100" rows="4" name="description" placeholder="Description" id="" cols="30" rows="10" ngModel></textarea>
               </div>
 
-              <div class="form-group"><input class="form-control" placeholder="Price($$)" type="text"></div>
+              <div class="form-group"><input class="form-control" name="price" placeholder="Price($$)" type="text" ngModel></div>
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary" [disabled]="propertiesForm.invalid" >Save</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
 
