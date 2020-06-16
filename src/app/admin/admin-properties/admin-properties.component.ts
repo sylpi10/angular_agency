@@ -13,6 +13,7 @@ export class AdminPropertiesComponent implements OnInit {
   propertiesForm: FormGroup;
   propertiesSubscription: Subscription;
   properties: any[] = [];
+  indexToRemove;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,4 +52,14 @@ export class AdminPropertiesComponent implements OnInit {
     this.propertiesForm.reset();
   }
 
+  onDeleteProperty(index){
+      $('#confirmDelete').modal('show');
+      // this.propertiesService.deleteProperty(index);
+      this.indexToRemove = index;
+  }
+
+  onConfirmDeleteProperty(){
+    this.propertiesService.deleteProperty(this.indexToRemove)
+    $('#confirmDelete').modal('hide');
+  }
 }
