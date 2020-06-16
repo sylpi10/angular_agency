@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-12 d-flex">
       <h2 class="font-weight-light"> <i class="fa fa-home"></i> Property Asset</h2>
-      <button class="btn btn-primary ml-auto px-3" type="button" data-toggle="modal" data-target="#properties-form">
+      <button class="btn btn-primary ml-auto px-3" type="button" data-toggle="modal"
+              data-target="#properties-form" (click)="resetForm()">
         <i class="fa fa-plus"></i> Add</button>
     </div>
   </div>
@@ -13,8 +14,10 @@
       <div class="d-flex">
         <h3 class="font-weight-normal">{{property.title}}</h3>
         <div class="ml-auto">
-          <button class="btn btn-primary m-1" type="button"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-danger m-1" type="button" (click)="onDeleteProperty(i)" data-toggle="modal" data-target="#confirmDelete">
+          <button class="btn btn-primary m-1" type="button" (click)="onEditProperty(property)">
+            <i class="fas fa-edit"></i></button>
+          <button class="btn btn-danger m-1" type="button"
+          (click)="onDeleteProperty(i)" data-toggle="modal" data-target="#confirmDelete">
             <i class="fas fa-trash-alt"></i></button>
         </div>
       </div>
@@ -75,9 +78,9 @@
                   <label class="input-group-text" for="inputGroupSelect01" required="required">Category</label>
                 </div>
                 <select class="custom-select" id="inputGroupSelect01" formControlName="category">
-                  <option value="ranch">Ranch</option>
-                  <option value="house">House</option>
-                  <option value="appartment">Appartment</option>
+                  <option value="Ranch">Ranch</option>
+                  <option value="House">House</option>
+                  <option value="Appartment">Appartment</option>
                 </select>
               </div>
 
