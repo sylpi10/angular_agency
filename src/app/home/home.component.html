@@ -9,7 +9,7 @@
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <hr>
           <p [ngStyle]="{backgroundColor: getSoldStatus(i)}" class="text-white p-2 text-center">
-            <span *ngIf="!item.sold">For Sell</span>
+            <span *ngIf="!item.sold">For Sale</span>
             <span *ngIf="item.sold">Sold Out</span>
           </p>
         </div>

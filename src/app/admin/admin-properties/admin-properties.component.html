@@ -28,6 +28,8 @@
       <p *ngIf="property.price && property.price !== ''">
           {{property.price}} $£€
       </p>
+      <span class="bg-danger text-white p-2" *ngIf="property.sold">Sold</span>
+      <span class="bg-success text-white p-2" *ngIf="!property.sold">For Sale</span>
     </div>
 
     <!-- Modal confirm delete -->
@@ -86,19 +88,35 @@
 
               <div class="form-row">
                 <div class="form-group col-6">
-                  <input type="text" placeholder="Surface (m2)" class="form-control" formControlName="surface">
+                  <input type="text" placeholder="Surface (m2)" class="form-control"
+                         formControlName="surface">
                 </div>
                 <div class="form-group col-6">
-                  <input type="text" placeholder="Nb Rooms" class="form-control" formControlName="nbRooms">
+                  <input type="text" placeholder="Nb Rooms" class="form-control"
+                         formControlName="nbRooms">
                 </div>
               </div>
 
               <div class="form-group">
-                <textarea class="form-control w-100" rows="4" formControlName="description" placeholder="Description" id="" cols="30" rows="10"></textarea>
+                <textarea class="form-control w-100" rows="4" formControlName="description"
+                          placeholder="Description" id="" cols="30" rows="10"></textarea>
               </div>
 
-              <div class="form-group"><input class="form-control" formControlName="price" placeholder="Price($$)" type="text"></div>
+              <div class="form-group">
+                <input class="form-control" formControlName="price" placeholder="Price($$)" type="text">
+              </div>
+              <div class="form-group">
 
+                <!--switch-->
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="customSwitches" formControlName="sold">
+                  <label class="custom-control-label" for="customSwitches">
+                    <span class="bg-danger text-white p-2" *ngIf="propertiesForm.value.sold">Sold</span>
+                    <span class="bg-success text-white p-2"*ngIf="!propertiesForm.value.sold" >For Sale</span>
+                  </label>
+                </div>
+
+              </div>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" [disabled]="propertiesForm.invalid" >Save</button>
