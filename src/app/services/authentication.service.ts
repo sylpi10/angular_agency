@@ -8,13 +8,29 @@ export class AuthenticationService {
 
   constructor() { }
 
-  signUpUser(email: string, password: string){
+  // signUpUser(email: string, password: string){
+  //   return new Promise(
+  //     (resolve, reject) => {
+  //         firebase.auth().createUserWithEmailAndPassword(email, password).then(
+  //           () => {
+  //             alert('connected');
+  //             resolve();
+  //           }
+  //         ).catch(
+  //           (error) => {
+  //             reject(error);
+  //           }
+  //         )
+  //     }
+  //   );
+  // }
+
+  signInUser(email: string, password: string){
     return new Promise(
       (resolve, reject) => {
-          firebase.auth().createUserWithEmailAndPassword(email, password).then(
-            () => {
-              alert('connected');
-              resolve();
+          firebase.auth().signInWithEmailAndPassword(email, password).then(
+            (data) => {
+              resolve(data);
             }
           ).catch(
             (error) => {
@@ -24,4 +40,9 @@ export class AuthenticationService {
       }
     );
   }
+
+  signOutUser(){
+    firebase.auth().signOut();
+  }
+
 }

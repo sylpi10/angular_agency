@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signin',
@@ -13,7 +14,8 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -31,9 +33,9 @@ export class SigninComponent implements OnInit {
     const email = this.signinForm.get('email').value;
     const password = this.signinForm.get('password').value;
     // password === passwordConfirm ? execute logic : error;  //-> if confirm password
-   this.authenticationService.signUpUser(email, password).then(
-     () => {
-       alert('ok')
+   this.authenticationService.signInUser(email, password).then(
+     (data) => {
+       this.router.navigate(['/admin', 'dashboard'])
      }
    ).catch(
      (error) => {

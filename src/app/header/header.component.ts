@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from "../services/authentication.service";
+import * as firebase from "firebase";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -9,14 +12,28 @@ export class HeaderComponent implements OnInit {
 
   title: string = "My amazing agency";
 
-  isDisabled: boolean = true;
+  isLogged: boolean = false;
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    firebase.auth().onAuthStateChanged(
+      (userSession) =>{
+        if (userSession){
+          this.isLogged = true;
+        }else{
+          this.isLogged = false;
+        }
+      }
+    )
   }
 
-  onClick() {
-    this.isDisabled = false;
+
+  onSignOutUser() {
+    this.authenticationService.signOutUser();
+    this.router.navigate(['/home'])
   }
 }
