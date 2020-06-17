@@ -25,6 +25,9 @@
         <span *ngIf="property.surface && property.surface !== ''"> {{property.surface}} m²,</span>
         <span *ngIf="property.nbRooms && property.nbRooms !== ''"> {{property.nbRooms}} rooms.</span>
       </p>
+      <p *ngIf="property.description && property.description !== ''">
+        {{property.description}}
+      </p>
       <p *ngIf="property.price && property.price !== ''">
           {{property.price}} $£€
       </p>

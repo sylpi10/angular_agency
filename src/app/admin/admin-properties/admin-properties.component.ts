@@ -30,7 +30,8 @@ export class AdminPropertiesComponent implements OnInit {
         this.properties = data;
       }
     );
-    this.propertiesService.emitProperties()
+    this.propertiesService.getProperties();
+    this.propertiesService.emitProperties();
   }
 
   initPropertiesForm(){
@@ -47,7 +48,7 @@ export class AdminPropertiesComponent implements OnInit {
 
   onSubmitPropertiesForm(){
       const newProperty: Property = this.propertiesForm.value;
-      //
+      newProperty.sold = this.propertiesForm.get('sold').value ? this.propertiesForm.get('sold').value : false;
       if (this.editMode){
         this.propertiesService.updateProperty(newProperty, this.indexToUpdate)
       }else
