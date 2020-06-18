@@ -1,0 +1,60 @@
+
+<div class="container py-5" *ngIf="property">
+  <h1 class="display-4">Details:  {{property.title}}</h1>
+  <hr>
+
+  <div class="row col-md-6">
+    <h3>{{property.price}} $</h3>
+  </div>
+
+<!--  if one image-->
+  <div class="" *ngIf="property.photos.length === 1">
+    <div class="d-flex mb-2" *ngFor="let photo of property.photos; let first = first">
+      <img *ngIf="first" [src]="photo" alt="" class="mr-auto w-50">
+    </div>
+  </div>
+
+<!--  if photos > 1-->
+  <div class="" *ngIf="property.photos.length > 1">
+  <div class="d-flex mb-2">
+
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active"  *ngFor="let photo of property.photos; let first = first" [ngClass]="{'active':first}">
+          <img class="d-block w-100" [src]="photo" alt=" slide">
+        </div>
+
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+  </div>
+  </div>
+
+
+  <div class="col-md-6">
+    <p>{{property.category}}:
+      <span *ngIf="property.surface && property.surface !== ''"> {{property.surface}} m²,</span>
+      <span *ngIf="property.nbRooms && property.nbRooms !== ''"> {{property.nbRooms}} rooms.</span>
+    </p>
+    <p *ngIf="property.description && property.description !== ''">
+      {{property.description}}
+    </p>
+    <p *ngIf="property.price && property.price !== ''">
+      {{property.price}} $£€
+    </p>
+
+    <span class="bg-danger text-white p-2" *ngIf="property.sold">Sold</span>
+    <span class="bg-success text-white p-2" *ngIf="!property.sold">For Sale</span>
+  </div>
+
+
+</div>
