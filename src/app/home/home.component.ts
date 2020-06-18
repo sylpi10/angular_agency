@@ -24,14 +24,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.propertiesSubscription = this.propertiesService.propertiesSubject.subscribe(
       (data: any) => {
-        console.log(data);
         this.properties = data;
       }
     );
+    this.propertiesService.getProperties()
     this.propertiesService.emitProperties()
   }
   ngOnDestroy() {
     this.propertiesSubscription.unsubscribe()
   }
 
+  onGoToDetail(index){
+
+  }
 }
