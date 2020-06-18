@@ -20,7 +20,7 @@
           </p>
           <span>{{item.price}} $</span>
           <div class="text-center">
-            <button class="btn btn-primary mt-4" type="button" (click)="onGoToDetail(i)" >See Details</button>
+            <button class="btn btn-primary mt-4" type="button" [routerLink]="['/property', i]">See Details</button>
           </div>
         </div>
       </div>

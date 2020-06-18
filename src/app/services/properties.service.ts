@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {Property} from "../interface/property";
 import * as firebase from "firebase";
+import {rejects} from "assert";
+import {error} from "@angular/compiler/src/util";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,22 @@ export class PropertiesService {
       this.properties = data.val() ? data.val() : [];
       this.emitProperties();
     });
+  }
+
+  getSingleProperty(id){
+    return new Promise(
+      (resolve, reject) =>{
+        firebase.database().ref('/properties/' + id).once('value').then(
+          (data) => {
+            resolve(data.val());
+          }
+        ).catch(
+          (error) =>{
+            reject(error);
+          }
+        )
+      }
+    )
   }
 
   createProperties(property: Property){

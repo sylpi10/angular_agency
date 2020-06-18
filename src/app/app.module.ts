@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminPropertiesComponent } from './admin/admin-properties/admin-properties.component';
 import { SigninComponent } from './authentication/signin/signin.component';
+import { PropertyDetailComponent } from './property-detail/property-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SigninComponent } from './authentication/signin/signin.component';
     HomeComponent,
     AdminDashboardComponent,
     AdminPropertiesComponent,
-    SigninComponent
+    SigninComponent,
+    PropertyDetailComponent
   ],
   imports: [
     BrowserModule,
