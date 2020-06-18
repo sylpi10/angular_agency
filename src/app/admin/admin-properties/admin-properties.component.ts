@@ -14,9 +14,15 @@ export class AdminPropertiesComponent implements OnInit {
   propertiesForm: FormGroup;
   propertiesSubscription: Subscription;
   properties: Property[] = [];
+
   indexToRemove;
   indexToUpdate;
+
   editMode:boolean = false;
+
+  photoUploading: boolean = false;
+  photoUploaded: boolean = false;
+  photoUrl: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,6 +55,7 @@ export class AdminPropertiesComponent implements OnInit {
   onSubmitPropertiesForm(){
       const newProperty: Property = this.propertiesForm.value;
       newProperty.sold = this.propertiesForm.get('sold').value ? this.propertiesForm.get('sold').value : false;
+      newProperty.photo = this.photoUrl ? this.photoUrl : '';
       if (this.editMode){
         this.propertiesService.updateProperty(newProperty, this.indexToUpdate)
       }else
@@ -60,6 +67,7 @@ export class AdminPropertiesComponent implements OnInit {
   resetForm(){
     this.editMode= false;
     this.propertiesForm.reset();
+    this.photoUrl = '';
   }
 
   onDeleteProperty(index){
@@ -83,6 +91,7 @@ export class AdminPropertiesComponent implements OnInit {
     this.propertiesForm.get('description').setValue(property.description)
     this.propertiesForm.get('price').setValue(property.price)
     this.propertiesForm.get('sold').setValue(property.sold)
+    this.photoUrl = property.photo ? property.photo : '';
 
     const index = this.properties.findIndex(
       (propertyEl) =>{
@@ -92,6 +101,21 @@ export class AdminPropertiesComponent implements OnInit {
      }
     );
     this.indexToUpdate = index;
+  }
+
+  onUploadFile(event){
+    this.photoUploading = true;
+    console.log(event)
+    this.propertiesService.uploadFile(event.target.files[0]).then(
+      (url: string) => {
+        this.photoUrl = url;
+        this.photoUploading = false;
+        this.photoUploaded = true;
+        setTimeout(()=> {
+          this.photoUploaded = false;
+        }, 5000);
+      }
+    );
   }
 
 }
