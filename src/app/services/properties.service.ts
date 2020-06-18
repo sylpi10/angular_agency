@@ -83,7 +83,7 @@ export class PropertiesService {
       const storageRef = firebase.storage().refFromURL(fileLink);
       storageRef.delete().then(
         () => {
-          console.log('file deleted')
+          console.log('file deleted !!')
         }
       ).catch(
         (error) => {
