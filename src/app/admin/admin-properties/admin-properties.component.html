@@ -32,8 +32,8 @@
           {{property.price}} $£€
       </p>
 
-      <div class="d-flex mb-2" *ngIf="property.photo && property.photo !== ''">
-        <img [src]="property.photo" alt="" class="mr-auto w-50">
+      <div class="d-flex mb-2" *ngFor="let photo of property.photos; let first = first">
+        <img *ngIf="first" [src]="photo" alt="" class="mr-auto w-50">
       </div>
 
 <!--    sold / for sale info-->
@@ -133,8 +133,13 @@
                 </div>
 
 <!--                display image-->
-                <div class="d-flex mb-3" *ngIf="photoUrl && photoUrl !== ''">
-                  <img [src]="photoUrl" alt="" class="mx-auto w-50">
+                <div class="row">
+                  <div class="col-4 border border-secondary rounded m-1 p-1 bg-light position-relative"
+                       *ngFor="let photo of photosAdded; let i = index">
+                    <span class="text-danger position-absolute mr-1 deletePhoto" (click)="onRemoveAddedPhoto(i)">
+                      <i class="fas fa-times"></i></span>
+                    <img [src]="photo" alt="" class="w-100">
+                  </div>
                 </div>
 
                 <!--switch-->
