@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'myAgency';
 
   constructor(){
-
+//       db config
   }
 
 }
