@@ -19,10 +19,10 @@
   <div class="d-flex mb-2">
 
 
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active"  *ngFor="let photo of property.photos; let first = first" [ngClass]="{'active':first}">
-          <img class="d-block w-100" [src]="photo" alt=" slide">
+    <div id="carouselExampleControls" class="w-50 h-100 carousel slide" data-ride="carousel">
+      <div class="carousel-inner h-100 w-100">
+        <div class="carousel-item active w-100"  *ngFor="let photo of property.photos; let first = first" [ngClass]="{'active':first}">
+          <img class="d-block w-100" [src]="photo" alt=" slide" height=320>
         </div>
 
       </div>
